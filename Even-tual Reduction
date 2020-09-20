@@ -1,0 +1,145 @@
+// https://www.codechef.com/COOK120B/problems/EVENTUAL/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main
+{
+    static class FastReader
+    {
+		final long MOD=(long)1e9+7;
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader()
+        {
+            br = new BufferedReader(new
+                    InputStreamReader(System.in));
+        }
+
+        String next()
+        {
+            while (st == null || !st.hasMoreElements())
+            {
+                try
+                {
+                    st = new StringTokenizer(br.readLine());
+                }
+                catch (IOException  e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt()
+        {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong()
+        {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble()
+        {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine()
+        {
+            String str = "";
+            try
+            {
+                str = br.readLine();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            return str;
+        }
+		
+		 public long gcd(long a, long b) {
+            return b == 0 ? a : gcd(b, a % b);
+        }
+     
+        public int gcd(int a, int b) {
+            return b == 0 ? a : gcd(b, a % b);
+        }
+		public long pow(long base, long exp) {
+            long ret = 1;
+            while (exp > 0) {
+                if ((exp & 1) == 1) ret = ret * base;
+                base = base * base;
+                exp >>= 1;
+            }
+            return ret;
+    
+        }
+		
+	
+        public long pow(long base, long exp, long MOD) {
+            base %= MOD;
+            long ret = 1;
+            while (exp > 0) {
+                if ((exp & 1) == 1) ret = ret * base % MOD;
+                base = base * base % MOD;
+                exp >>= 1;
+            }
+            return ret;
+    
+        }
+        
+        public int[] getArray(){
+              String str=nextLine();
+       String numb[]=str.split(" "); 
+       int n = numb.length;
+       int arr[] = new int[n];
+       int i=0;
+       for(String num : numb){
+              arr[i++]= Integer.parseInt(num);
+       }
+       return arr;
+        }
+    }
+  
+    public static void main(String[] args)
+    {
+        FastReader sc=new FastReader();
+        int t = sc.nextInt();
+        while (t-->0){
+         int n=sc.nextInt();
+         String str = sc.nextLine();
+         
+         Map<Character, Integer> mp = new HashMap<>();
+         
+         for(char c: str.toCharArray()){
+                   if(mp.containsKey(c)){
+                                 mp.put(c, mp.get(c)+1);
+                   }else
+                   mp.put(c, 1);
+         }
+         int flag=0;
+        // System.out.println(mp);
+         for(int val : mp.values()){
+               if(val%2!=0)   
+               {
+                             flag=1;
+                             break;
+               }
+         }
+         
+         if(flag==1)
+         System.out.println("NO");
+         else
+         System.out.println("YES");
+         
+      
+        }
+    }
+}
